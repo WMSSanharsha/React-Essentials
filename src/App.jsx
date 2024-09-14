@@ -3,9 +3,10 @@ import Header from "./components/Header";
 import CoreConcept from "./components/CoreConcept";
 import TabButton from "./components/TabButton";
 import { useState } from "react";
+import { EXAMPLES } from "./data";
 
 function App() {
-  const [selectedTopic, setSelectedTopic] = useState("Please Click a Button");
+  const [selectedTopic, setSelectedTopic] = useState("components");
   function handleClick(selectedButton) {
     setSelectedTopic(selectedButton);
   }
@@ -29,14 +30,20 @@ function App() {
         <section id="examples">
           <h2>Examples</h2>
           <menu>
-            <TabButton onClick={() => handleClick("Components")}>
+            <TabButton onClick={() => handleClick("components")}>
               Components
             </TabButton>
-            <TabButton onClick={() => handleClick("JSX")}>JSX</TabButton>
-            <TabButton onClick={() => handleClick("Props")}>Props</TabButton>
-            <TabButton onClick={() => handleClick("State")}>State</TabButton>
+            <TabButton onClick={() => handleClick("jsx")}>JSX</TabButton>
+            <TabButton onClick={() => handleClick("props")}>Props</TabButton>
+            <TabButton onClick={() => handleClick("state")}>State</TabButton>
           </menu>
-          {selectedTopic}
+          <div id="tab-content">
+            <h3>{EXAMPLES[selectedTopic].title}</h3>
+            <p>{EXAMPLES[selectedTopic].description}</p>
+            <pre>
+              <code>{EXAMPLES[selectedTopic].code}</code>
+            </pre>
+          </div>
         </section>
       </main>
     </div>
